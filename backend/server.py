@@ -89,6 +89,10 @@ async def root():
 
 # Include module routers
 api_router.include_router(auth_router, prefix="/auth", tags=["Authentication"])
+api_router.include_router(invoices_router, prefix="/invoices", tags=["Invoices"])
+api_router.include_router(crm_router, prefix="/crm", tags=["CRM"])
+api_router.include_router(ai_router, prefix="/ai", tags=["AI Assistant"])
+api_router.include_router(reports_router, prefix="/reports", tags=["Reports"])
 
 # Include API router in main app
 app.include_router(api_router)
