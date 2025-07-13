@@ -15,6 +15,10 @@ from core.database import db_manager
 
 # Module imports
 from modules.auth.routes import router as auth_router
+from modules.invoices.routes import router as invoices_router
+from modules.crm.routes import router as crm_router
+from modules.ai_assistant.routes import router as ai_router
+from modules.reports.routes import router as reports_router
 
 # Initialize settings and logging
 settings = get_settings()
