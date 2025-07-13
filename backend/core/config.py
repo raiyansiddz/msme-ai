@@ -3,44 +3,40 @@ Configuration management for the MSME SaaS platform
 """
 import os
 from typing import Optional
-from pydantic import BaseSettings
 import logging
 
 logger = logging.getLogger(__name__)
 
-class Settings(BaseSettings):
+class Settings:
     """Application settings"""
     
-    # Database settings
-    mongo_url: str = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
-    db_name: str = os.environ.get('DB_NAME', 'msme_saas')
-    
-    # JWT settings
-    jwt_secret_key: str = os.environ.get('JWT_SECRET_KEY', 'your-secret-key-change-in-production')
-    jwt_algorithm: str = "HS256"
-    access_token_expire_minutes: int = 30
-    
-    # AI settings
-    gemini_api_key: str = os.environ.get('GEMINI_API_KEY', '')
-    
-    # Email settings
-    smtp_host: str = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
-    smtp_port: int = int(os.environ.get('SMTP_PORT', '587'))
-    smtp_user: str = os.environ.get('SMTP_USER', '')
-    smtp_password: str = os.environ.get('SMTP_PASSWORD', '')
-    
-    # WhatsApp settings
-    whatsapp_token: str = os.environ.get('WHATSAPP_TOKEN', '')
-    whatsapp_phone_number_id: str = os.environ.get('WHATSAPP_PHONE_NUMBER_ID', '')
-    
-    # Application settings
-    app_name: str = "MSME SaaS Platform"
-    app_version: str = "1.0.0"
-    debug: bool = os.environ.get('DEBUG', 'false').lower() == 'true'
-    
-    class Config:
-        env_file = ".env"
-        env_file_encoding = 'utf-8'
+    def __init__(self):
+        # Database settings
+        self.mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+        self.db_name = os.environ.get('DB_NAME', 'msme_saas')
+        
+        # JWT settings
+        self.jwt_secret_key = os.environ.get('JWT_SECRET_KEY', 'your-secret-key-change-in-production')
+        self.jwt_algorithm = "HS256"
+        self.access_token_expire_minutes = 30
+        
+        # AI settings
+        self.gemini_api_key = os.environ.get('GEMINI_API_KEY', '')
+        
+        # Email settings
+        self.smtp_host = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
+        self.smtp_port = int(os.environ.get('SMTP_PORT', '587'))
+        self.smtp_user = os.environ.get('SMTP_USER', '')
+        self.smtp_password = os.environ.get('SMTP_PASSWORD', '')
+        
+        # WhatsApp settings
+        self.whatsapp_token = os.environ.get('WHATSAPP_TOKEN', '')
+        self.whatsapp_phone_number_id = os.environ.get('WHATSAPP_PHONE_NUMBER_ID', '')
+        
+        # Application settings
+        self.app_name = "MSME SaaS Platform"
+        self.app_version = "1.0.0"
+        self.debug = os.environ.get('DEBUG', 'false').lower() == 'true'
 
 # Global settings instance
 settings = Settings()
