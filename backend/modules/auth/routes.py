@@ -15,7 +15,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/auth", tags=["Authentication"])
+router = APIRouter(tags=["Authentication"])
 
 @router.post("/register", response_model=dict)
 async def register(user_data: UserCreate):
